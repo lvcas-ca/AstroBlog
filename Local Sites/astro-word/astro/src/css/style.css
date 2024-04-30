@@ -1,0 +1,14 @@
+@font-face {
+    font-family: "FontMain";
+    src: url("../fonts/swiss-911-ultra-compressed.woff") format("woff");
+  }
+  
+  .fuente {
+    font-family: "FontMain";
+    /*font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;*/
+    line-height: 63px;
+    letter-spacing: 2px;
+    font-weight: 400;
+   
+   
+  }

@@ -1,0 +1,68 @@
+---
+
+import { render } from "astro/runtime/server/index.js";
+const response = await fetch("https://abueloword.000webhostapp.com/wp-json/wp/v2/posts")
+const posts = await response.json()
+
+
+
+
+const normalizedPosts = posts.map(post => {
+  post.title.rendered
+  post.content.rendered
+  post.acf.titulo_post_test; // Normalizar acf.titulo_post_test si existe
+  post.tiempos_poema;
+
+  
+
+  
+  return {
+    ...post,
+
+    
+
+  };
+});
+
+const readPoem = posts.map(post =>{
+  const poema =   post.acf.tiempos_poema;
+  const poemTxt = poema.trim().split("\n");
+  
+  
+})
+
+
+
+---
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>POST</title>
+</head>
+<body>
+    <h1>Mis publicaciones</h1>
+
+  {
+    normalizedPosts.map(post => (
+      <div>
+        <h1>{post.title.rendered}</h1>
+        <p>{post.acf.tiempos_poema}</p>
+        <span>{post.acf.titulo_post_test}</span>
+        <audio src={post.acf.audio} controls></audio>
+        <img src={post.acf.imagen_poema} alt="">
+      </div>
+    ))
+  }
+  {
+    
+  
+  }
+
+
+</body>
+</html>
+
