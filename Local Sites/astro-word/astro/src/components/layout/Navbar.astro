@@ -1,0 +1,21 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../../img/logo.png';
+
+import Bars3 from 'astro-heroicons/solid/Bars3.astro';
+
+
+---
+
+<nav class="fixed top-0 left-0 right-0 z-50 py-2">
+    <section class="flex mx-[10px] lg:mx-[80px] justify-between">
+    <div>
+        <Image class='size-10' src={logo} alt="Logo">
+    </div>
+        <Bars3 class="size-10 text-blue-500" />
+    </section>
+</nav>
+
+
+
+  
