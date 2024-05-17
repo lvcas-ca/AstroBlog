@@ -1,12 +1,12 @@
 ---
-import type {Links} from "../layout/links";
+import type {Links} from "../../data/layout/links";
 
 //Relaciono 
 const {title, path} = Astro.props as Links;
 ---
 
 <a href={path}
-class="hover:underline"
+class="hover:text-slate-300"
 >
     {title}
 </a>

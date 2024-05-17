@@ -4,6 +4,9 @@ import logo from '../../img/logo.png';
 
 import Bars3 from 'astro-heroicons/solid/Bars3.astro';
 
+import {linksData, type Links} from "../../data/layout/links";
+import Link  from '../../components/layout/Link.astro';
+import type { Code } from 'astro:components';
 
 ---
 
@@ -12,10 +15,21 @@ import Bars3 from 'astro-heroicons/solid/Bars3.astro';
     <div>
         <Image class='size-10' src={logo} alt="Logo">
     </div>
-        <Bars3 class="size-10 text-blue-500" />
+    <div class="flex justify-center items-center sm:visible invisible gap-6 font-['system-ui'] uppercase text-slate-200 font-medium ">
+        {
+            linksData.map((link) => (
+                  <Link {...link}/>
+            ))
+        }
+    </div>
+        <Bars3 class="size-10 text-slate-200  sm:invisible visible" />
+    
     </section>
 </nav>
 
+<script>
+    import { isSideMenuOpen } from "../store"; 
+</script>
 
 
   

@@ -6,7 +6,7 @@ export interface Links {
 export const linksData: Links[] = [
     {
       title: "Blog",
-      path: "/Blog"
+      path: "/blog"
     },
     {
         title: "Poesias",
