@@ -1,0 +1,71 @@
+---
+import { databases } from '../lib/appwrite'; 
+import { ID } from 'appwrite';
+
+import Layout from '../layouts/Layout.astro'; 
+
+if(Astro.request.method === 'POST'){
+    const formData = await Astro.request.formData();
+    const data = {
+        title: formData.get('title'),
+        content: formData.get('content'),
+        featureImage: formData.get('featureImage'),
+        status: formData.get('status'),
+        userId: formData.get('userId'),
+        category: formData.get('category'),
+    }
+
+    const results = await databases.createDocument(
+        import.meta.env.APP_APPWRITE_DATABASE_ID,
+        import.meta.env.APP_APPWRITE_COLLECTION_ID,
+        ID.unique(),
+        data
+    );
+
+    return Astro.redirect(`/posts/${results.status}`);
+
+    console.log('data', data)
+}
+---
+<Layout title="New Post - My Blog">
+
+  <form method="POST">
+    <div class="mb-6">
+      <label class="block text-sm font-semibold mb-3" for="title">Title</label>
+      <input
+        id="title"
+        class="block w-full text-slate-900 border-slate-400 rounded focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+        type="text"
+        name="title"
+      />
+    </div>
+    <div class="mb-6">
+      <label class="block text-sm font-semibold mb-3" for="slug">Slug</label>
+      <input
+        id="slug"
+        class="block w-full text-slate-900 border-slate-400 rounded focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+        type="text"
+        name="slug"
+      />
+    </div>
+    <div class="mb-6">
+      <label class="block text-sm font-semibold mb-1" for="content">Content</label>
+      <p class="text-xs text-slate-600 italic mb-3">Supports Markdown</p>
+      <textarea
+        id="content"
+        class="block w-full min-h-80 text-slate-900 border-slate-400 rounded focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+        name="content"
+      />
+    </div>
+    <div class="mb-6">
+      <label class="block text-sm font-semibold mb-3" for="excerpt">Excerpt</label>
+      <input
+        id="excerpt"
+        class="block w-full text-slate-900 border-slate-400 rounded focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+        type="text"
+        name="excerpt"
+      />
+    </div>
+    <button class="inline-block rounded py-2.5 px-6 text-sm font-bold uppercase text-white bg-slate-600 hover:bg-slate-500 dark:bg-slate-500 dark:hover:bg-slate-400">Submit</button>
+  </form> 
+</Layout>

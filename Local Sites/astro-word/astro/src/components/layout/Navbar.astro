@@ -22,13 +22,23 @@ import type { Code } from 'astro:components';
             ))
         }
     </div>
+      <button id="btn-hamburguesa">
         <Bars3 class="size-10 text-slate-200  sm:invisible visible" />
+      </button>
+        
     
     </section>
 </nav>
 
 <script>
-    import { isSideMenuOpen } from "../store"; 
+   import { isSideMenuOpen } from "../store";
+
+   export function openSideBar(){
+    isSideMenuOpen.set(true);
+   }
+   const btnHamburguesa = document.getElementById("btn-hamburguesa");
+
+   btnHamburguesa.addEventListener("click", openSideBar);
 </script>
 
 
